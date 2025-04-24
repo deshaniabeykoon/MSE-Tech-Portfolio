@@ -6,21 +6,26 @@ Demonstrate basic NumPy operation
 
 ## Activity Summary
 - Created a NumPy array using arange of the first 10 positive integers.
-- Inspected the array attributes shape and dtype and printed it
-- Performed Vectorized operations in NumPy (element-wise multiplication or multiplying array elements by 2) and displayed the result.
+    .arange(start, stop, step). np.arange(1, 11) starts at 1 (inclusive) and ends at 11 (exclusive), with a default step size of 1. And so numbers from 1 up to, but not including, 11 is generated. The array will contain the integers from 1 to 10.
+- Inspected the array attributes shape and dtype.
+    .shape : The shape of an array is defined as the number of elements in each dimension. (10,) means the array has 10 elements and is one-dimensional.
+    .dtype : The attribute reveals the data type of the elements within this array. The data type is int64, which represents a 64-bit integer. 
+- Multiplied the elements of the array by 2. This is known as Vectorized operations (element-wise multiplication).
 
 # Week 2 - Activity 02
 NumPy Student Scores Analysis - This activity focuses on analyzing and manipulating a 2D NumPy array of student scores.
 
 ## Activity Summary
-- Store scores of 5 students across 3 subjects in a 2D array.
-- Using the enumarate object have displayed the students ID and subject scores (Row-wise)
-- Using mean in Numpy each student's scores and their average has been calculated (Row-wise)
-- Using mean in Numpy calculated and displayed the average for each subject (column-wise)
-- Using the sum function in Numpy calculated the total score for each student (Row-wise and column-wise operations)
-    The values are then passed into the function argmax to identify the student with the highest total score.
-- Identify the location of the third subject in the array and add bonus marks to the specific subject and update the array.
-    Vectorized array updates have been used to update the subject in column index 2
+- Scores is a 2D array that stores a scores of 5 students across 3 subjects in a 2D array.
+- The enumarate object is used to iterate and display the students ID and subject scores (Row-wise)
+- The mean is used to calculate the average for each student (Row-wise)
+    np.mean(scores, axis=1). Axis, when it is set to 1, it means calculating by row; when it is set to 0, it means calculating by column.
+    .2f formats the average score to 2 decimal places.
+    map(str, row) converts each score in the row to a string and joins the scores with the join keyword
+- The mean is used to calculate the average for each subject (column-wise)
+    Here the axis is set to 0 so the average is calculated Column wise.
+- The sum function is used to calculate the total for each student Row-wise. Argmax is then used to return the index of the maximum value in the array. Once the index is identified the value against is returned as the highest score.
+- scores[Rows, Columns] → scores[:, 2] selects all rows, but only the third column (index 2). The location of the third subject in the array is identified and the bonus marks are added to the specific subject and update the array.
 
 ## Files
 Week2-Activity02.py  - includes the code
