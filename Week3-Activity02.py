@@ -1,13 +1,22 @@
-num = 4
-factorial = 1
-  
-def factorial_m1(n, f):
+def factorial_m1(n):
   if n < 0:
-    return (print("Sorry, factorial does not exist for negative numbers"))
+    return (print("Sorry, No factorial defined for negative numbers"))
   else:
+    factorial = 1
     for i in range(1,n + 1):
-      f = f*i
-    print(n,'! :',f)
-    return f
+      factorial = factorial*i
+    print(n,'! :',factorial)
+    return factorial
+  
+# Test the function with different values
+# Test cases - Negative Values
+factorial_m1(-1)
 
-factorial_m1(num,factorial)
+# Test cases - zero
+factorial_m1(0)
+
+# Test cases - Positive Values
+factorial_m1(1)
+factorial_m1(2)
+factorial_m1(3)
+factorial_m1(4)
