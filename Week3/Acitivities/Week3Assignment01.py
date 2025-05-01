@@ -12,16 +12,25 @@ class Library:
     # The add_book method adds a book to the library and prints a message.
     def add_book(self, book):
         self.books.append(book) # Append - adds the book object to the books list
-        bookname = book.upper()
-        print(bookname,"\nhas been added to the library!\n")
+        bookname = book.title.upper()
+        authorname = book.author.upper()
+        # The bookname and authorname variables are used to store the title and author of the book in uppercase.
+        print(bookname,"by",authorname, "has been added to the library!\n")
 
     # The remove_book method removes a book from the library and prints a message.
     def remove_book(self, book):
-        if book in self.books:
-            self.books.remove(book) # Remove - removes the book object from the books list
-            print((book),"\nhas been removed from the library.")
-        else:
-            print((book),"is not found in the library.")
+        if not self.books:  # Check if the books list is empty
+            print("No books available to remove.")
+
+        for book in self.books:
+            bookname = book.title.upper()
+            authorname = book.author.upper()
+            if book.title.upper() == title.upper():
+                self.books.remove(book)
+                print(bookname,"by",authorname,"has been removed from the library.")
+                break
+            else:
+                print(bookname,"is not found in the library.")
 
     # The show_books method displays all the books in the library.
     def show_books(self):
@@ -31,7 +40,8 @@ class Library:
         else:
             print("Books available in the library:")
             for book in self.books:
-                print("- ",(book))
+                print("- ",(book.title.upper()), "by", (book.author.upper()))
+                # The for loop iterates through each book in the books list and prints the title and author in uppercase.
 
 class Book:
     # This class represents a book with a title and an author.
@@ -74,11 +84,18 @@ while True:
         author = input(" Enter book author: ")
         book = Book(title, author)
         library.add_book(book)
+    
     elif choice == '2':
-        print(' You will be Removing a book   ' )
-        print_header()
-        title = input(" Enter book title to remove: ")
-        library.remove_book(title)
+        if not library.books:  # Check if there are books before prompting
+            print("No books available to remove.")
+        else:
+            print(' You will be removing a book   ' )
+            print_header()
+            title = input(" Enter book title to remove: ")
+            library.remove_book(title)
+            # The remove_book method is called to remove the book from the library.
+            # The title variable is used to store the title of the book to be removed.
+    
     elif choice == '3':
         print(' You are attempting to view books ' )
         print_header()
