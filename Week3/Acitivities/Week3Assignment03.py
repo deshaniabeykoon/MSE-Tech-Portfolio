@@ -31,8 +31,6 @@
 # # Call the display method to show the result
 # number1.display()
 
-
-
 class Factorial:
 
     @staticmethod
