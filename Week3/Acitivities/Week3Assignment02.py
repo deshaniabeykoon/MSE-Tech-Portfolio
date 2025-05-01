@@ -48,73 +48,68 @@ class Student:
 
             print("| ", limited_name, trailing_spaces_name, "|", grades_str, trailing_spaces_grades, "|  ", self.calculate_average().__round__(2), trailing_spaces_avg,"|")
 
-#def main():
-def print_headers(header):
-    match header:
-        case "header":
-            print('|--------------------------------------------------|')
-            print('|         Student Grading System - Yoobee          |')
-            print('|--------------------------------------------------|')
-        case "seperator":
-            print('|--------------------------------------------------|')
-        case "student_header":
-            print('|--------------------------------------------------|')
-            print('|              Student Name and Grades             |')
-            print('|--------------------------------------------------|')
-        case "student_avg_header":
-            print('|            Student Grades and Average            |')
-            print('|--------------------------------------------------|')
-            print('|     NAME     |        GRADES        |   AVERAGE  |')
-        case _:
-            print("Not a valid output")  # Default case
+def main():
+    def print_headers(header):
+        match header:
+            case "header":
+                print('|--------------------------------------------------|')
+                print('|         Student Grading System - Yoobee          |')
+                print('|--------------------------------------------------|')
+            case "seperator":
+                print('|--------------------------------------------------|')
+            case "student_header":
+                print('|--------------------------------------------------|')
+                print('|              Student Name and Grades             |')
+                print('|--------------------------------------------------|')
+            case "student_avg_header":
+                print('|            Student Grades and Average            |')
+                print('|--------------------------------------------------|')
+                print('|     NAME     |        GRADES        |   AVERAGE  |')
+            case _:
+                print("Not a valid output")  # Default case
 
-def validate_count(option,count):
-    match option:
-        case "student":
-            while count < 1 or count > 5:
-                print("Error: Student count must be between 1 and 5. Please re-enter.")
-                count = int(input("  Enter the number of students: "))  # Prompt for re-entry
-            
-        case "subject":
-            while count < 1 or count > 4:
-                print("Error: Subject count must be between 1 and 4. Please re-enter.")
-                count = int(input("  Enter the number of grades: "))  # Prompt for re-entry
-        case _:
-            print("Not a valid input")  # Default case
-    return count
+    def validate_count(option):
+        while True:
+            try:
+                count = int(input("  Enter the number of " + ("students" if option == "student" else "grades") + ": "))
+                if option == "student" and (count < 1 or count > 5):
+                    print("Error: Student count must be between 1 and 5.")
+                elif option == "subject" and (count < 1 or count > 4):
+                    print("Error: Subject count must be between 1 and 4.")
+                else:
+                    return count
+            except ValueError:
+                print("Invalid input. Please enter a number.")
 
-print_headers("header")
-print("|    Please Enter the Student and Subject Count    |")
-print("|    Student Count should be between 1 and 5       |")
-print("|    Subject Count should be between 1 and 4       |")
-print_headers("seperator")
+    print_headers("header")
+    print("|    Please Enter the Student and Subject Count    |")
+    print("|    Student Count should be between 1 and 5       |")
+    print("|    Subject Count should be between 1 and 4       |")
+    print_headers("seperator")
 
-students = []
-num_students = int(input("  Enter the number of students: "))
-num_students = validate_count("student",num_students)  # Validate student count
+    students = []
+    num_students = validate_count("student") # Validate number of students
+    num_grades = validate_count("subject") # Validate number of grades
 
-num_grades = int(input("  Enter the number of grades: "))
-num_grades = validate_count("subject",num_grades)  # Validate subject count
+    for i in range(num_students):
+        print_headers("student_header")
+        name = input("  Enter the student's name: ")
+        student = Student(name)
 
-for i in range(num_students):
-    print_headers("student_header")
-    name = input("  Enter the student's name: ")
-    student = Student(name)
+        for __ in range(num_grades):
+            grade = float(input("  Enter grade: "))
+            student.add_grade(grade)
 
-    for __ in range(num_grades):
-        grade = float(input("  Enter grade: "))
-        student.add_grade(grade)
+        students.append(student)
 
-    students.append(student)
-
-# Display information for all students
-print_headers("header")
-print_headers("student_avg_header")
-print_headers("seperator")
-for student in students:
-    student.calculate_average()
-    student.show_grades()
-print_headers("seperator")
+    # Display information for all students
+    print_headers("header")
+    print_headers("student_avg_header")
+    print_headers("seperator")
+    for student in students:
+        student.calculate_average()
+        student.show_grades()
+    print_headers("seperator")
 
 # The main function serves as the entry point for the program, where user input is collected and processed.
-#main()
+main()
