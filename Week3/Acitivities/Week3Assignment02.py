@@ -18,12 +18,17 @@ class Student:
     # def display_name(self):
     #     return "Student Name: " + self.name
     
-    def add_grade(self, grade):
-        # Validate the grade
-        while grade < 0 or grade > 100:
-            print("Error: Grade must be between 0 and 100. Please re-enter.")
-            grade = float(input("  Enter grade: "))  # Prompt for re-entry
-        self.grades.append(grade)
+    def add_grade(self):
+        while True:
+            try:
+                grade = float(input("  Enter grade: "))
+                if grade < 0 or grade > 100:
+                    print("Error: Grade must be between 0 and 100. Please re-enter.")
+                else:
+                    self.grades.append(grade)
+                    break  # Exit the loop on successful input
+            except ValueError:
+                print("Invalid input. Please enter a number.")
 
     def calculate_average(self):
         if len(self.grades) == 0:
@@ -100,8 +105,8 @@ def main():
         student = Student(name)
 
         for __ in range(num_grades):
-            grade = float(input("  Enter grade: "))
-            student.add_grade(grade)
+            #grade = float(input("  Enter grade: "))
+            student.add_grade()
 
         students.append(student)
 
