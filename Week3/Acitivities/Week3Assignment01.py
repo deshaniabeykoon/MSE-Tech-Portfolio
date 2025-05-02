@@ -57,6 +57,9 @@ class Book:
     def __str__(self):
         text = f"{self.title} by {self.author}"
         return text
+    
+    # def display_name(self):
+    #     return self.title + "by" + self.author
 
 def print_header():
     print('|-----------------------------|')

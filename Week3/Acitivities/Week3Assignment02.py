@@ -1,4 +1,4 @@
-# The code above is a Python program that implements a simple student grading system. 
+# A Python program that implements a simple student grading system. 
 # It allows users to enter student names and their respective grades, calculates the average grade for each student, 
 # and displays the information in a formatted table. 
 # The program includes input validation to ensure that the number of students and grades are within specified limits, 
@@ -14,6 +14,9 @@ class Student:
     def __str__(self):
         text = f"Student Name: {self.name}"
         return text
+    
+    # def display_name(self):
+    #     return "Student Name: " + self.name
     
     def add_grade(self, grade):
         # Validate the grade
