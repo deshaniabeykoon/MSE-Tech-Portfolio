@@ -7,7 +7,7 @@ with open("D:/Yoobee/Github/MSE800-PSE/Week4/sample_text.txt", "r") as data:
     line_count = 0
     for line in lines:
         line_count += 1
-        if line.find(search_string) != -1:
+        if line.find(search_string) != -1: # Check if the search string is in the line
             print("Found in line:",line_count, "Text is",line)
             count += 1
     
