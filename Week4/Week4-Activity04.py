@@ -2,7 +2,7 @@ import pandas as pd
 
 # Load the Parquet file into a Pandas DataFrame
 try:
-    df = pd.read_parquet("D:/Yoobee/Github/MSE800-PSE/Week4/Sample_data_2.parquet", engine='pyarrow')
+    df = pd.read_parquet("D:/Yoobee/Github/MSE800-PSE/Week4/Files/Sample_data_2.parquet", engine='pyarrow')
 except FileNotFoundError:
     print("Error: Parquet file not found. Please check the file path.")
 except Exception as e:
