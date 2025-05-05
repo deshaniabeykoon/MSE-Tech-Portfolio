@@ -1,7 +1,7 @@
 import pandas as pd
 
 search_string = "_"
-with open("D:/Yoobee/Github/MSE800-PSE/Week4/sample_text.txt", "r") as data:
+with open("D:/Yoobee/Github/MSE800-PSE/Week4/Files/sample_text.txt", "r") as data:
     lines = data.readlines()
     count = 0
     line_count = 0
