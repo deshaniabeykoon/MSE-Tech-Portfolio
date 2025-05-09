@@ -1,5 +1,5 @@
 from FileProcessor import FileProcessor
-from DataProcessor import DataProcessor
+# from DataProcessor import DataProcessor
 
 def main():
 
@@ -11,8 +11,8 @@ def main():
     rainfiledata.load_data()
     rainfiledata.initial_processing()
 
-    raindata = DataProcessor(rainfiledata.data)
-    raindata.load_annual_rainfall_data(rainfiledata.data)
+    # raindata = DataProcessor(rainfiledata.data)
+    # raindata.load_annual_rainfall_data(rainfiledata.data)
 
 if __name__ == "__main__":
     main()
