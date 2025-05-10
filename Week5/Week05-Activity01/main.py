@@ -3,30 +3,26 @@ from user_manager import add_user, view_users, search_user, delete_user
 from course_manager import add_course, view_courses, search_course, delete_course, add_course_user, view_course_users, search_course_user
 
 def menu():
-    print("\n==== User Manager ====")
-    print("1. Add User")
-    print("2. View All Users")
-    print("3. Search User by Name")
-    print("6. Search User by ID and Name")
-    print("4. Delete User by ID")
-
-    print("\n==== Course Manager ====")
-    print("7. Add Course")
-    print("8. View All Courses")
-    print("9. Search Course by Name")
-    print("10. Delete Course by ID")
-    print("11. Search Course by ID and Course Name")
-    print("12. Add User to Course")
-    print("13. View Users in Course")
-    print("14. Search Users in Course by ID and User Name")
-
-    print("5. Exit")
+    print("\n||============================== Main Menu ==============================||")
+    print("||========== User Manager ==========||========== Course Manager =========||")
+    print("|| 1. Add User                      || 6.  Add Course                    ||")
+    print("|| 2. View All Users                || 7.  View All Courses              ||")
+    print("|| 3. Search User by Name           || 8.  Search Course by Name         ||")
+    print("|| 4. Search User by ID and Name    || 9.  Search Course by ID and Name  ||")
+    print("|| 5. Delete User by ID             || 10. Delete Course by ID           ||")
+    print("||                                  || 11. Add User to Course            ||")
+    print("||                                  || 12. View Users in Course          ||")
+    print("||                                  || 13. Search by Course ID and User  ||")
+    print("||==================================||===================================||")
+    print("|| 0. Exit                                                               ||")
+    print("||=======================================================================||")
 
 def main():
     create_table()
     while True:
         menu()
         choice = input("Select an option (1-14): ")
+        # -------- user manager -------- #
         if choice == '1':
             name = input("Enter name: ")
             email = input("Enter email: ")
@@ -41,9 +37,6 @@ def main():
             for user in users:
                 print(user)
         elif choice == '4':
-            user_id = int(input("Enter user ID to delete: "))
-            delete_user(user_id)
-        elif choice == '6':
             user_id = int(input("Enter user ID to search: "))
             name = input("Enter name to search: ")
             users = search_user(user_id,name)
@@ -51,24 +44,25 @@ def main():
                 print(user)
             if not users:
                 print("No user found with that ID and name.")
+        elif choice == '5':
+            user_id = int(input("Enter user ID to delete: "))
+            delete_user(user_id)
 
-        elif choice == '7':
+        # -------- course manager -------- #
+        elif choice == '6':
             name = input("Enter course name: ")
             unit = int(input("Enter course unit: "))
             add_course(name, unit)
-        elif choice == '8':
+        elif choice == '7':
             courses = view_courses()
             for course in courses:
                 print(course)
-        elif choice == '9':
+        elif choice == '8':
             name = input("Enter course name to search: ")
             courses = search_course(name)
             for course in courses:
                 print(course)
-        elif choice == '10':
-            course_id = int(input("Enter course ID to delete: "))
-            delete_course(course_id)
-        elif choice == '11':
+        elif choice == '9':
             course_id = int(input("Enter course ID to search: "))
             name = input("Enter course name to search: ")
             courses = search_course(course_id, name)
@@ -76,16 +70,21 @@ def main():
                 print(course)
             if not courses:
                 print("No course found with that ID and name.")
-        elif choice == '12':
+        elif choice == '10':
+            course_id = int(input("Enter course ID to delete: "))
+            delete_course(course_id)
+        
+        # -------- course-user manager -------- #
+        elif choice == '11':
             course_id = int(input("Enter course ID to add user to: "))
             user_id = int(input("Enter user ID to add to course: "))
             add_course_user(course_id, user_id)
-        elif choice == '13':
+        elif choice == '12':
             #course_id = int(input("Enter course ID to view users: "))
             users = view_course_users()
             for user in users:
                 print(user)
-        elif choice == '14':
+        elif choice == '13':
             course_id = int(input("Enter course ID to search users: "))
             name = input("Enter user name to search: ")
             users = search_course_user(course_id, name)
@@ -94,7 +93,7 @@ def main():
             if not users:
                 print("No users found with that ID and name in the course.")
 
-        elif choice == '5':
+        elif choice == '0':
             print("Goodbye!")
             break
         else:

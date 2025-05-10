@@ -75,8 +75,24 @@ def search_course_user(course_id, user_name):
             JOIN users ON course_users.user_id = users.id
             WHERE course_users.course_id = ? AND users.name LIKE ?
         ''', (course_id, '%' + user_name + '%'))
+    elif course_id is None and user_name is not None:
+        cursor.execute('''
+            SELECT course_users.course_id, course.name as course_name, course_users.user_id, users.name as user_name
+            FROM course_users
+            JOIN course ON course_users.course_id = course.id
+            JOIN users ON course_users.user_id = users.id
+            WHERE users.name LIKE ?
+        ''', ('%' + user_name + '%',))
+    elif course_id is not None and user_name is None:
+        cursor.execute('''
+            SELECT course_users.course_id, course.name as course_name, course_users.user_id, users.name as user_name
+            FROM course_users
+            JOIN course ON course_users.course_id = course.id
+            JOIN users ON course_users.user_id = users.id
+            WHERE course_users.course_id = ?
+        ''', (course_id,))
 
-        #cursor.execute("SELECT course_id, user_id FROM course_users WHERE course_id = ? AND user_id IN (SELECT id FROM users WHERE name LIKE ?)", (course_id, '%' + user_name + '%'))
+    #cursor.execute("SELECT course_id, user_id FROM course_users WHERE course_id = ? AND user_id IN (SELECT id FROM users WHERE name LIKE ?)", (course_id, '%' + user_name + '%'))
 
     # if course_id is None and user_name is not None:
     #     cursor.execute("SELECT * FROM course_users WHERE user_id IN (SELECT id FROM users WHERE name LIKE ?)", ('%' + user_name + '%',))
