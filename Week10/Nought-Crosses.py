@@ -55,6 +55,8 @@ def make_human_move(board, current_player):
 def make_computer_move(board, current_player): 
     """Given a board state and the computer piece ('O' or 'X') choose a square for the computer to play in""" 
     candidates = empty_squares(board) 
+    if not candidates:
+        return  # No moves left, do nothing
     choice = random.randrange(0, len(candidates))
     row, column = candidates[choice] 
     index = row * 3 + column
@@ -71,11 +73,13 @@ def won_game(board):
         [0, 3, 6], [1, 4, 7], [2, 5, 8],  # columns
         [0, 4, 8], [2, 4, 6]              # diagonals
     ]
+    display(board)
     return any(
         board[pos[0]] == board[pos[1]] == board[pos[2]]
         and board[pos[0]] != " "
         for pos in win_positions
     )
+    
 
 def game_over(board): 
     """Given a board state return true iff there's a winner or if the game is drawn.""" 
@@ -86,7 +90,7 @@ def is_full(board):
     return all(square != " " for square in board)
 
 def game_over(board): 
-    """Return true iff there's a winner""" 
+    """Return true if there's a winner""" 
     return won_game(board)
 
 def main():
