@@ -1,11 +1,12 @@
 import openai
 import os
 from together import Together
+from dotenv import load_dotenv
 
-TOGETHER_API_KEY = "ef30e93374cdab33b70f740c5991e8f737cf835ac6a847fc080f0a937b3327dc"
-#OPENAI_API_KEY = "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"
 #openai.api_key = OPENAI_API_KEY
 
+load_dotenv()
+TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
 client = Together(api_key=TOGETHER_API_KEY)
 
 def instructor_chatbot():
